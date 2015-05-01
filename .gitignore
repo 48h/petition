@@ -8,3 +8,5 @@ striptease
 webriti-smtp-mail
 wp-multibyte-patch
 petition/config/param.local.php
+exec-php
+myplugin/swiftmailer

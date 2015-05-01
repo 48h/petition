@@ -2,17 +2,10 @@
 require_once '../../../wp-load.php';
 
 /**
-* Contructor
-* @param String $_name The name of the user
-* @param email $_email The email of the user
-* @param String $_street The street of the user
-* @param String $_zip The zip code
-* @param String $_place The place of the user
-* @param String $_countr The Country of the user
-* @param Integer $pageId The page of the petition the user sent
-* @author Harrison Ssamanya <ssmny2@yahoo.co.uk>
+* standard Contructor
 */
 class PersonInfo{
+    
     private $name=null;
     private $email=null;
     private $street=null;
@@ -21,75 +14,76 @@ class PersonInfo{
     private $country=null;
     private $pageNo = null;
     private $pageTitle=null;
-    private $keepMyInfo=null;
+    private $keepMyInfo=false;
     
     function getKeepMyInfo() {
         return $this->keepMyInfo;
     }
-
     function getName() {
         return $this->name;
     }
-
     function getEmail() {
         return $this->email;
     }
-
     function getStreet() {
         return $this->street;
     }
-
     function getZip() {
         return $this->zip;
     }
-
     function getPlace() {
         return $this->place;
     }
-
     function getCountry() {
         return $this->country;
-    }
-    
+    }    
     function getPageTitle() {
         return $this->pageTitle;
-    }
-    
+    }    
     function getPageNo() {
         return $this->pageNo;
     }
 
-            
-    function set_Title($pageId){
-
-        $page = get_post($pageId);
-        if(is_page($page)){
-            $this->pageTitle = $page->title;
-        }else{
-            echo nl2br('Resource not found! This page must have been deleted');
-        }
+    function setName($name) {
+        $this->name = $name;
     }
-     
-    /**
-     * Contructor
-     * @param String $_name The name of the user
-     * @param email $_email The email of the user
-     * @param String $_street The street of the user
-     * @param String $_zip The zip code
-     * @param String $_place The place of the user
-     * @param String $_countr The Country of the user
-     * @param Integer $pageId The page of the petition the user sent
-     * @author Harrison Ssamanya <ssmny2@yahoo.co.uk>
-     */
-    function PersonalInfo($_name,$_email,$_street,$_zip,$_place,$_countr,$pageId){
-        $this->name=$_name;
-        $this->email=$_email;
-        $this->street=$_street;
-        $this->zip = $_zip;
-        $this->place=$_place;
-        $this->country=$_countr;
-        $this->pageNo=$pageId;
-        $this->set_Title($pageId);
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setStreet($street) {
+        $this->street = $street;
+    }
+
+    function setZip($zip) {
+        $this->zip = $zip;
+    }
+
+    function setPlace($place) {
+        $this->place = $place;
+    }
+
+    function setCountry($country) {
+        $this->country = $country;
+    }
+
+    function setPageNo($pageNo) {
+        $this->pageNo = $pageNo;
+    }
+
+    function setPageTitle($pageTitle) {
+        $this->pageTitle = $pageTitle;
+    }
+
+    function setKeepMyInfo($keepMyInfo) {
+        
+        $this->keepMyInfo = $keepMyInfo? True:FALSE;
+    }
+                
+    function set_Title($pageId){        
+        $post = get_post($pageId);
+        $this->pageTitle = $post->post_name;
     }
     
     /**
@@ -100,6 +94,7 @@ class PersonInfo{
     function petitionPageContent(){
         $post = get_page($this->getPageNo()); 
         $content = apply_filters('the_content', $post->post_content);
+        echo 'PageNo: '.$this->getPageNo();
         return $content;
     }
 }

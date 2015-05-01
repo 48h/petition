@@ -1,14 +1,12 @@
 <?php
 
-/**
- * 
- */
 class DbAdapter {
-    //private $host = "localhost"; // Host name 
-    //private $username = "root"; // Mysql username 
-    //private $password = ""; // Mysql password 
-    //private $db_name = "petitiondb"; // Database name
-    private $host = "localhost/wp090.webpack.hosteurope.de"; // Host name 
+//    private $host = "localhost"; // Host name 
+//    private $username = "root"; // Mysql username 
+//    private $password = ""; // Mysql password 
+//    private $db_name = "petitiondb"; // Database name
+    
+    private $host = "wp090.webpack.hosteurope.de"; // or "localhost" 
     private $username = "db12343970-40748"; // Mysql username 
     private $password = "Mede1904u12u"; // Mysql password 
     private $db_name = "db12343970-oeffnen2"; // Database name
@@ -29,5 +27,3 @@ class DbAdapter {
         return $this->instance;
     }
 }
-
-?>
