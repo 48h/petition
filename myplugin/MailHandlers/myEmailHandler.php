@@ -9,17 +9,17 @@ class MailHandler{
     }
 
     function setMailCredentials(){
-            $this->Mailer->Username = "wp12343970-407483";
-            $this->Mailer->Password = "Inteoeff15";
+        $this->Mailer->Username = "wp12343970-407483";
+        $this->Mailer->Password = "Inteoeff15";
     }
 
     function smtpSettings(){
         
-            $this->Mailer->isSMTP(); //switch to smtp
-            $this->Mailer->Port = 25;
-            //$this->Mailer->SMTPAuth = true;		
-            $this->Mailer->SMTPSecure = 'tls';
-            $this->Mailer->Host = 'wp090.webpack.hosteurope.de';
+        $this->Mailer->isSMTP(); //switch to smtp
+        $this->Mailer->Port = 25;
+        $this->Mailer->SMTPAuth = FALSE;		
+        $this->Mailer->SMTPSecure = 'tls';
+        $this->Mailer->Host = 'wp090.webpack.hosteurope.de';
     }
 
     function headerInfoSettings($sender){
@@ -29,8 +29,7 @@ class MailHandler{
         $userFname= $first_name.' '.$last_name;
         $sender = ($sender == NULL)||($sender == '')? get_option('admin_email'):$sender;
         
-        $this->Mailer->From = get_option( 'admin_email' );
-        $this->Mailer->FromName = $userFname;
+        $this->Mailer->setFrom(get_option('admin_email'), $userFname);
         $this->Mailer->AddReplyTo($sender);
     }
 
@@ -38,10 +37,10 @@ class MailHandler{
             $this->Mailer->AddAddress($recMail,$name);
     }
 
-    function sendMail($subject, $HtmlBody){
-        
+    function sendMail($subject, $HtmlBody,$isHtml){
+        if($isHtml){$this->Mailer->isHTML();}
         $this->Mailer->Subject = $subject;
-        $this->Mailer->Body = $HtmlBody;
+        $this->Mailer->msgHTML = $HtmlBody;
 
         if($this->Mailer->Send()){
            echo '<div>';
