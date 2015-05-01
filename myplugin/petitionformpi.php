@@ -6,8 +6,6 @@ Version: 1.0
 Author: Harrison Ssamanya
 */
 
-require_once ('config.php');
-require_once('myEmailHandler.php');
 define("ACTION_URL",plugins_url()."/myplugin/formHandler.php");
 function html_petition_form($pageId) { 
  
@@ -64,8 +62,8 @@ function html_petition_form($pageId) {
 }
  
 function cf_shortcode($atts) {
-    $pageId=strval($atts[pageidparam]);
-    $pageId = ($pageId==null) ? '' : $pageId;
+    $pId=strval($atts['pageidparam']);
+    $pageId = ($pId==null) ? '' : $pId;
     ob_start();
     html_petition_form($pageId); 
     return ob_get_clean();
