@@ -14,7 +14,6 @@ class Form {
     protected $submitClasses = array();
     protected $elements = array();
     protected $hiddenElements = array();
-
     const METHOD_POST = 'post';
     const METHOD_GET = 'get';
     const FORM_HORIZONTAL ='form-horizontal';
