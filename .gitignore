@@ -10,3 +10,4 @@ wp-multibyte-patch
 petition/config/param.local.php
 exec-php
 myplugin/swiftmailer
+speakup-email-petitions

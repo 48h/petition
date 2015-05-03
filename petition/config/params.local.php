@@ -5,6 +5,4 @@
  * Date: 01.05.2015
  * Time: 01:52
  */
-return [
-
-];
+return  array();
